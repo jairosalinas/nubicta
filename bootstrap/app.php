@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->trustProxies(at: config('app.trusted_proxies', []));
         $middleware->web(append: [HandleInertiaRequests::class, \App\Http\Middleware\LogoutAfterRestore::class]);
         $middleware->redirectGuestsTo('/login');
         $middleware->redirectUsersTo('/');
