@@ -35,7 +35,7 @@ abstract class ApiBaseController extends Controller
     protected function authorizeApi(string $permission): void
     {
         $user = Auth::user();
-        if ($user && ! Gate::forUser($user)->allows($permission)) {
+        if (! $user || ! Gate::forUser($user)->allows($permission)) {
             throw new HttpException(403, "El usuario de la llave no tiene el permiso {$permission}.");
         }
     }
