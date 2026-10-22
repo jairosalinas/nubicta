@@ -54,6 +54,12 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    // Trusted proxy IPs/CIDR ranges (comma-separated in .env).
+    // Only these proxies may supply X-Forwarded-* headers.
+    'trusted_proxies' => array_values(array_filter(
+        array_map('trim', explode(',', (string) env('TRUSTED_PROXIES', '')))
+    )),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
