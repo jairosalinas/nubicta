@@ -10,7 +10,7 @@ class TrustedProxyTest extends TestCase
 {
     public function test_https_is_detected_only_when_the_request_comes_from_a_trusted_proxy(): void
     {
-        config()->set('app.trusted_proxies', ['10.20.30.40']);
+        config()->set('trustedproxy.proxies', ['10.20.30.40']);
 
         Route::get('/__test_proxy_scheme', fn (Request $request) => response()->json([
             'secure' => $request->isSecure(),
@@ -34,7 +34,7 @@ class TrustedProxyTest extends TestCase
 
     public function test_untrusted_client_cannot_force_https_with_forwarded_headers(): void
     {
-        config()->set('app.trusted_proxies', ['10.20.30.40']);
+        config()->set('trustedproxy.proxies', ['10.20.30.40']);
 
         Route::get('/__test_proxy_scheme', fn (Request $request) => response()->json([
             'secure' => $request->isSecure(),
