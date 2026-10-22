@@ -24,7 +24,7 @@ class TrustedProxyTest extends TestCase
             'HTTP_X_FORWARDED_PROTO' => 'https',
             'HTTP_X_FORWARDED_PORT' => '443',
             'SERVER_PORT' => '80',
-        ])->get('/__test_proxy_scheme')
+        ])->get('http://contabilidad.example.test/__test_proxy_scheme')
             ->assertOk()
             ->assertJson([
                 'secure' => true,
@@ -47,7 +47,7 @@ class TrustedProxyTest extends TestCase
             'HTTP_X_FORWARDED_PROTO' => 'https',
             'HTTP_X_FORWARDED_PORT' => '443',
             'SERVER_PORT' => '80',
-        ])->get('/__test_proxy_scheme')
+        ])->get('http://contabilidad.example.test/__test_proxy_scheme')
             ->assertOk()
             ->assertJson([
                 'secure' => false,
